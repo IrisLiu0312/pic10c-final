@@ -1,2 +1,2 @@
 # pic10c-final
-Create an address book from scratch using Qt and C++
+Create a simple calculator from scratch using Qt and C++.
