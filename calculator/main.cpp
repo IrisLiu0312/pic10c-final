@@ -97,8 +97,11 @@ int main(int argc, char *argv[])
     bar[4]->addWidget(equal);
 
     layout->addWidget(label, 0, 0);
-    for(size_t i = 0; i < 5; ++i)
-        layout->addLayout(bar[i],i+1,0);
+    layout->addLayout(bar[0], 1, 0);
+    layout->addLayout(bar[1], 2, 0);
+    layout->addLayout(bar[2], 3, 0);
+    layout->addLayout(bar[3], 4, 0);
+    layout->addLayout(bar[4], 5, 0);
 
     QWidget *control = new QWidget;
     control->setLayout(layout);
