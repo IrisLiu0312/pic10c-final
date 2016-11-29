@@ -27,12 +27,16 @@ private slots:
     void clearClicked();            //C
 
 private:
+    double lhs;
+    double rhs;
+    bool isDecimal = false;
     Ui::MainWindow *ui;
-    void abort(); //throws error
-    bool calculate(double rhs, const QString& op); //applies op
-    double sum;
+    QString display;
     QString lastAdditiveOp;
     QString lastMultiplicativeOp;
+    void abort(); //throws error
+    void calculate(double rhs, const QString& op); //applies op
+    bool rhsNotZero();
 };
 
 #endif // MAINWINDOW_H
