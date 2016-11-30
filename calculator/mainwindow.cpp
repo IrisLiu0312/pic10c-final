@@ -28,7 +28,7 @@ void MainWindow::digitClicked(){
 }
 
 void MainWindow::additiveOpClicked(){
-    //find digit clicked
+    //find operation
     QPushButton *clickedButton = qobject_cast<QPushButton *>(sender());
     //pull information from display out into rhs
     //calculate(rhs, op);
@@ -39,57 +39,51 @@ void MainWindow::additiveOpClicked(){
 
 void MainWindow::multiplicativeOpClicked(){
     //find operation
+    QPushButton *clickedButton = qobject_cast<QPushButton *>(sender());
     //pull information from display out into rhs
     //calculate(rhs, op);
-    display = lhs;
-    //display += op;
+    lineEdit->setText(lineEdit->text() + clickedButton->text());
     QCoreApplication::processEvents();
 }
 
 void MainWindow::equalClicked(){
     //pull info from display out into rhs
     //calculate(rhs, op);
-    display = lhs;
-    QCoreApplication::processEvents();
 }
 
 void MainWindow::pointClicked(){
-    isDecimal = true;
-    display += ".";
+    lineEdit->setText(lineEdit->text() + QString("."));
     QCoreApplication::processEvents();
 }
 
 void MainWindow::changeSignClicked(){
     rhs *= -1;
-    display = rhs;
+    lineEdit->setText(QString("-") + lineEdit->text());
     QCoreApplication::processEvents();
 }
 
 void MainWindow::deleteClicked(){
-    if(rhsNotZero()){
-        //rhs -= (rhs % 10);
-        display = rhs;
-        QCoreApplication::processEvents();
-    }
+    lineEdit->backspace();
+    QCoreApplication::processEvents();
 }
 
 void MainWindow::clearEntryClicked(){
-    rhs = 0;
-    display = "0";
+    //implement
     QCoreApplication::processEvents();
 }
 
 void MainWindow::clearClicked(){
+    //set everything back to zero
     lhs = 0;
     rhs = 0;
-    display = "0";
+    lineEdit->setText("0");
     QCoreApplication::processEvents();
 
 }
 
 //functions
 void MainWindow::abort(){
-    display = "Error";
+    lineEdit->setText("Error");
     QCoreApplication::processEvents();
 }
 
@@ -106,7 +100,7 @@ void MainWindow::calculate(double rhs, const QString& op){
         lhs *= rhs;
     else
         lhs /= rhs;
-    display = lhs;
+    lineEdit->setText(QString::number(lhs));
     QCoreApplication::processEvents();
 }
 
