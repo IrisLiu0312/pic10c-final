@@ -1,11 +1,16 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+#include <QPushButton>
+
 MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    QMainWindow(parent)
 {
-    ui->setupUi(this);
+    setupUi(this);
+    push_1->setAutoDefault(false);
+
+    //connect buttons?
+    connect(push_1, SIGNAL(clicked()), this, SLOT(digitClicked()));
 }
 
 MainWindow::~MainWindow()
@@ -15,32 +20,35 @@ MainWindow::~MainWindow()
 
 //slots
 void MainWindow::digitClicked(){
-    //find digit
-    display += digit;
+    //find digit clicked
+    QPushButton *clickedButton = qobject_cast<QPushButton *>(sender());
+    //add to display
+    lineEdit->setText(lineEdit->text() + clickedButton->text());
     QCoreApplication::processEvents();
 }
 
 void MainWindow::additiveOpClicked(){
-    //find operation
+    //find digit clicked
+    QPushButton *clickedButton = qobject_cast<QPushButton *>(sender());
     //pull information from display out into rhs
-    calculate(rhs, op);
-    display = lhs;
-    display += op;
+    //calculate(rhs, op);
+    //add to display
+    lineEdit->setText(lineEdit->text() + clickedButton->text());
     QCoreApplication::processEvents();
 }
 
 void MainWindow::multiplicativeOpClicked(){
     //find operation
     //pull information from display out into rhs
-    calculate(rhs, op);
+    //calculate(rhs, op);
     display = lhs;
-    display += op;
+    //display += op;
     QCoreApplication::processEvents();
 }
 
 void MainWindow::equalClicked(){
     //pull info from display out into rhs
-    calculate(rhs, op);
+    //calculate(rhs, op);
     display = lhs;
     QCoreApplication::processEvents();
 }
@@ -59,7 +67,7 @@ void MainWindow::changeSignClicked(){
 
 void MainWindow::deleteClicked(){
     if(rhsNotZero()){
-        rhs -= (rhs % 10);
+        //rhs -= (rhs % 10);
         display = rhs;
         QCoreApplication::processEvents();
     }

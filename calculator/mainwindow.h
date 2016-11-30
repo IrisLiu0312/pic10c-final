@@ -2,12 +2,13 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "ui_mainwindow.h"
 
 namespace Ui {
 class MainWindow;
 }
 
-class MainWindow : public QMainWindow
+class MainWindow : public QMainWindow, private Ui::MainWindow
 {
     Q_OBJECT
 
@@ -27,16 +28,17 @@ private slots:
     void clearClicked();            //C
 
 private:
+    //variables
+    bool waitingForOp = true;
     double lhs;
     double rhs;
-    bool isDecimal = false;
-    Ui::MainWindow *ui;
-    QString display;
     QString lastAdditiveOp;
     QString lastMultiplicativeOp;
+    Ui::MainWindow *ui;
+    //functiosn
+    bool rhsNotZero();
     void abort(); //throws error
     void calculate(double rhs, const QString& op); //applies op
-    bool rhsNotZero();
 };
 
 #endif // MAINWINDOW_H
