@@ -18,8 +18,7 @@ public:
 
 private slots:
     void digitClicked();            //0123456789
-    void additiveOpClicked();       //+ -
-    void multiplicativeOpClicked(); //x /
+    void OpClicked();               //+ - x /
     void equalClicked();            //=
     void pointClicked();            //.
     void changeSignClicked();       //+/-
@@ -29,16 +28,17 @@ private slots:
 
 private:
     //variables
-    bool waitingForOp = true;
     double lhs;
     double rhs;
-    QString lastAdditiveOp;
-    QString lastMultiplicativeOp;
+    int opPos = 0;
+    QString lastOp;
+    bool isDecimal = false;
     Ui::MainWindow *ui;
-    //functiosn
-    bool rhsNotZero();
+
+    //functions
+    bool rhsZero();
     void abort(); //throws error
-    void calculate(double rhs, const QString& op); //applies op
+    void calculate(const QString& op); //applies op
 };
 
 #endif // MAINWINDOW_H
