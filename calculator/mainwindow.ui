@@ -125,7 +125,7 @@
      <item row="2" column="4">
       <widget class="QPushButton" name="push_multiply">
        <property name="text">
-        <string>×</string>
+        <string>*</string>
        </property>
       </widget>
      </item>

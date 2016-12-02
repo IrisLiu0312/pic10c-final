@@ -196,7 +196,7 @@ public:
         push_delete->setText(QApplication::translate("MainWindow", "\342\206\220", 0));
         push_3->setText(QApplication::translate("MainWindow", "3", 0));
         push_clear->setText(QApplication::translate("MainWindow", "C", 0));
-        push_multiply->setText(QApplication::translate("MainWindow", "\303\227", 0));
+        push_multiply->setText(QApplication::translate("MainWindow", "*", 0));
         push_1->setText(QApplication::translate("MainWindow", "1", 0));
         push_divide->setText(QApplication::translate("MainWindow", "\303\267", 0));
         push_7->setText(QApplication::translate("MainWindow", "7", 0));

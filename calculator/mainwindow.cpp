@@ -75,7 +75,7 @@ void MainWindow::OpClicked(){
     int newPos = lineEdit->cursorPosition();
 
     //Extract the first number or calculate
-    if(opPos == 0){ //there has not been an operation, lineEdit should only contain the first number
+    if(!opExists){ //there has not been an operation, lineEdit should only contain the first number
         lhs = lineEdit->text().toDouble(); //put first number into lhs
     }
     else{ //there has been a last operation
@@ -88,6 +88,7 @@ void MainWindow::OpClicked(){
     lastOp = clickedButton->text();
     opPos = newPos; //position of newest operation
     isDecimal = false;
+    opExists = true;
 
     lineEdit->setText(QString::number(lhs) + lastOp);//set to the new lhs with the last operation
     lineEdit->end(false);
@@ -105,6 +106,7 @@ void MainWindow::equalClicked(){
     rhs = lineEdit->selectedText().toDouble(); //put selected text (2nd number) into rhs
     calculate(lastOp); //calculate
 
+    opExists = false;
     lastOp = "="; //set last operation as equal
     lineEdit->setText(QString::number(lhs));//set to the new lhs
     lineEdit->end(false);
@@ -120,13 +122,15 @@ void MainWindow::pointClicked(){
 }
 
 void MainWindow::changeSignClicked(){
-    if(lineEdit[0].text() == "-"){ //was negative, have to delete the "-"
+    if(isNegative){ //delete -
         lineEdit->setCursorPosition(1); //start after -
         lineEdit->end(true); //select all the way to the end
         lineEdit->setText(lineEdit->selectedText());
-    }else //add - to the beginning
+        isNegative = false;
+    }else{ //add - to the beginning
+        isNegative = true;
         lineEdit->setText(QString("-") + lineEdit->text());
-
+    }
     lineEdit->end(false);
     QCoreApplication::processEvents();
 }
@@ -172,7 +176,7 @@ void MainWindow::calculate(const QString& op){
         lhs += rhs;
     else if(op == "-")
         lhs -= rhs;
-    else if(op == "×")
+    else if(op == "*")
         lhs *= rhs;
     else
         lhs /= rhs;

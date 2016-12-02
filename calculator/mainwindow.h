@@ -33,6 +33,8 @@ private:
     int opPos = 0;
     QString lastOp;
     bool isDecimal = false;
+    bool isNegative = false;
+    bool opExists = false;
     Ui::MainWindow *ui;
 
     //functions
