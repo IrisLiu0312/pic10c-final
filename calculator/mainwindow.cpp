@@ -168,7 +168,6 @@ void MainWindow::abort(){
 }
 
 void MainWindow::calculate(const QString& op){
-    //negative operations don't work
     if(rhsZero() && (op == "/")){ //cannot divide by 0
         abort();
         return;
