@@ -4,7 +4,7 @@ Created a simple calculator from scratch using Qt and C++.
 
 ## Complete
 * UI, with buttons all connected.
-* All operations (+ - * / %) work...
+* All operations (`+ - * / %`) work...
   * But in a specific format `a + b = c`
 * Ability to change signs, clear entry, backspace.
 * Decimals work.
